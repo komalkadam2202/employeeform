@@ -1,0 +1,15 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+   <div class="container login">
+	    <h4>Login Form</h4>
+		<label for="inputEmail4">Username</label>
+		<input type="text" formControlName="username" class="form-control" placeholder="Firstname" >
+
+		<label for="inputEmail4">Password</label>
+		<input type="text" formControlName="password" class="form-control" placeholder="password" >
+
+		
+		 <button type="submit" class="btn btn-warning btn-sm">Login</button>
+		 <button type="submit" class="btn btn-danger btn-sm ml-2" routerLink="/register">Register</button>
+		<!-- <button type="submit" [disabled]="employeeForm.controls['fname'].invalid"   class="btn btn-primary">Submit</button> -->
+   </div>
+</form>

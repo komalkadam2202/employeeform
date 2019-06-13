@@ -1,0 +1,118 @@
+
+  <div class="container">
+    <h2>Modal Example</h2>
+    <!-- Button to Open the Modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+      Open modal
+    </button>
+  
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+        
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Quick Add Form</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          
+          <!-- Modal body -->
+          <div class="modal-body">
+            <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+              <input type="hidden" formControlName="id" class="form-control">
+              <div class="form-row">
+                  <div class="form-group col-md-8">
+                      <label for="inputEmail4">FirstName</label>
+                      <input type="text" formControlName="fname" class="form-control"  id="inputEmail4" placeholder="Firstname" required>
+                      <div class="alert   red-text" *ngIf="employeeForm.get('fname').hasError('required') && (employeeForm.get('fname').touched || employeeForm.get('fname').dirty) ">First Name is required*
+                      </div>
+                  </div>
+              </div>
+            
+              <div class="form-row">
+                  <div class="form-group col-md-8">
+                      <label for="inputEmail4">Lastname</label>
+                      <input type="text" formControlName="lname" class="form-control" id="inputEmail4" placeholder="Lastname">
+                      <div class="alert   red-text" *ngIf="employeeForm.get('lname').hasError('required') && (employeeForm.get('lname').touched || employeeForm.get('lname').dirty) ">Last Name is required*
+                      </div>
+                  </div>
+              </div>
+              <div class="form-row">
+                  <div class="form-group col-md-8">
+                      <label for="inputEmail5">Email</label>
+                      <input type="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"id="inputEmail5" placeholder="Email">
+                      <div class="alert   red-text" *ngIf="employeeForm.get('email').hasError('required') && (employeeForm.get('email').touched || employeeForm.get('email').dirty )">Email is required*
+                      </div>
+                      <div class="alert   red-text" *ngIf="employeeForm.get('email').hasError('email') ">Email must be a valid email*</div>
+                  </div>
+              </div>
+            
+            
+            <div class="form-group">
+                <label for="multiple">Choose file</label>
+                <input type="file" class="form-control" formControlName="productImage" (change)="onFileChange($event)" />
+                <ngx-avatar></ngx-avatar>
+            </div>  
+            
+            
+              <button type="submit" [disabled]="employeeForm.controls['fname' && 'lname' && 'email'].invalid"   class="btn btn-primary">Submit</button>
+            
+            </form>
+          </div>
+          
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  
+
+  
+
+  
+<!-- <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+  <input type="hidden" formControlName="id" class="form-control">
+  <div class="form-row">
+      <div class="form-group col-md-8">
+          <label for="inputEmail4">FirstName</label>
+          <input type="text" formControlName="fname" class="form-control"  id="inputEmail4" placeholder="Firstname" required>
+          <div class="alert   red-text" *ngIf="employeeForm.get('fname').hasError('required') && (employeeForm.get('fname').touched || employeeForm.get('fname').dirty) ">First Name is required*
+          </div>
+      </div>
+  </div>
+
+  <div class="form-row">
+      <div class="form-group col-md-8">
+          <label for="inputEmail4">Lastname</label>
+          <input type="text" formControlName="lname" class="form-control" id="inputEmail4" placeholder="Lastname">
+          <div class="alert   red-text" *ngIf="employeeForm.get('lname').hasError('required') && (employeeForm.get('lname').touched || employeeForm.get('lname').dirty) ">Last Name is required*
+          </div>
+      </div>
+  </div>
+  <div class="form-row">
+      <div class="form-group col-md-8">
+          <label for="inputEmail5">Email</label>
+          <input type="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"id="inputEmail5" placeholder="Email">
+          <div class="alert   red-text" *ngIf="employeeForm.get('email').hasError('required') && (employeeForm.get('email').touched || employeeForm.get('email').dirty )">Email is required*
+          </div>
+          <div class="alert   red-text" *ngIf="employeeForm.get('email').hasError('email') ">Email must be a valid email*</div>
+      </div>
+  </div>
+
+
+<div class="form-group">
+    <label for="multiple">Choose file</label>
+    <input type="file" class="form-control" formControlName="productImage" (change)="onFileChange($event)" />
+    <ngx-avatar></ngx-avatar>
+</div>  
+
+
+  <button type="submit" [disabled]="employeeForm.controls['fname' && 'lname' && 'email'].invalid"   class="btn btn-primary">Submit</button>
+
+</form> -->
