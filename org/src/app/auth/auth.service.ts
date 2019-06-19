@@ -16,6 +16,11 @@ export class AuthService {
   loginuser(value){
       return this.http.post('http://localhost:3500/login', value);
   }
+
+  forgotpass(email){
+    return this.http.post('http://localhost:3500/forgot', email);
+  }
+
   loggedIn(){
     return !!localStorage.getItem('token');
   }
@@ -25,6 +30,15 @@ export class AuthService {
     this.routing.navigate([''])
   }
 
+  resetpass(id,password){
+    return this.http.put('http://localhost:3500/reset/' +`${id}`,password)
+  }
+
+  resendemail(id){
+    return this.http.post('http://localhost:3500/resendemail' + `/${id}`);
+  }
+  
+  // +`${id}`
   getToken(){
     return localStorage.getItem('token')
   }

@@ -240,10 +240,12 @@ export class UpdateEmployeeComponent implements OnInit {
 
   console.log("hobbies***********",res.hobbiesPreferences);
   var newDef=[];
-  if(res.hobbiesPreferences)
+  if(res.hobbiesPreferences == "")
   {
     newDef= this.hobbiesPreferences;
+    console.log("*************************", newPref);
   }else{
+    console.log(  JSON.stringify(res.hobbiesPreferences[0]).split(','));
     var newPref = JSON.stringify(res.hobbiesPreferences[0]).split(',');
     // console.log("*************************", newPref);
      for(var i= 0 ; i< this.hobbiesPreferences.length; i++){
@@ -268,7 +270,7 @@ export class UpdateEmployeeComponent implements OnInit {
       this.data = res;
     
       // console.log(res.techskills[0]);
-      //this.employeeForm.patchValue({'hobbiesPreferences':newDef});
+      this.employeeForm.patchValue({'hobbiesPreferences':newDef});
       this.employeeForm.patchValue({'techskill':this.techskills});
   
       this.employeeForm.patchValue({

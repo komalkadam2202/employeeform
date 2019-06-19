@@ -20,6 +20,7 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.formbuilder.group({
       username: ['', Validators.minLength(4)], 
       password: ['', Validators.required],
+      email: ['', Validators.required],
       cfpassword: ['', passValidator],
       
 
@@ -28,7 +29,7 @@ export class RegisterComponent implements OnInit {
   }
   onSubmit(){
     this. submitted = true;
-    console.log(this.registerForm.value.username)
+    console.log(this.registerForm.value.email)
     this.authservice.registeruser(this.registerForm.value).subscribe((res : any)=>{
           
     })
