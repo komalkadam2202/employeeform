@@ -78,18 +78,18 @@ onSkill(skillval){
 
   
  
- toggleVisibility(e,values){  
+//  toggleVisibility(e,values){  
 
-  this.marked = e.target.checked;
-  this.markvalue = e.target.value;
+//   this.marked = e.target.checked;
+//   this.markvalue = e.target.value;
   
-  console.log(values+"-----"+this.markvalue)
-  if (this.marked){
-    console.log("true");
-  }else{
-    console.log("false");
-  }
-}
+//   console.log(values+"-----"+this.markvalue)
+//   if (this.marked){
+//     console.log("true");
+//   }else{
+//     console.log("false");
+//   }
+// }
   
   get f(){
     return this.employeeForm.controls; 
@@ -135,8 +135,8 @@ onSkill(skillval){
     // }
    
       
-      console.log("got id");
-      this.employeeForm.value.techskill = this.techskills;
+    console.log("got id");
+    this.employeeForm.value.techskill = this.techskills;
      
     console.log("------------------------",this.employeeForm.value.techskill)
       this.employeeservice.setemployee(this.formData).subscribe((res : any)=>{

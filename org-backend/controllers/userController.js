@@ -196,7 +196,7 @@ srouter.post("/forgot", (req, res) => {
       } else {
         console.log("gfghf");
 
-        sendMail(users, info => {
+        sendMail(users, users[0].email, info => {
           console.log();
           res.send(info);
         });
@@ -208,8 +208,8 @@ srouter.post("/forgot", (req, res) => {
       });
     });
 });
-async function sendMail(user, callback) {
-  console.log(user);
+async function sendMail(user, email, callback) {
+  console.log("******************", email);
   let transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 587,
@@ -221,24 +221,40 @@ async function sendMail(user, callback) {
     }
   });
 
-  let mailOptions = {
-    from: "komal22kadam@gmail.com",
-    to: "komal22kadam@gmail.com",
-    subject: "welcome to email",
-    text:
-      "<h1>Click on link to reset password</h1> http://localhost:4200/reset/" +
-      user[0]._id +
-      ""
-  };
+  if (email) {
+    let mailOptions = {
+      from: "komal22kadam@gmail.com",
+      to: email,
+      subject: "welcome to email",
+      text:
+        "Click on link to reset password:- http://localhost:4200/reset/" +
+        user[0]._id +
+        ""
+    };
+    let info = await transporter.sendMail(mailOptions);
+
+    callback(info);
+  } else {
+    let mailOptions = {
+      from: "komal22kadam@gmail.com",
+      to: "komal22kadam@gmail.com",
+      subject: "welcome to email",
+      text: "You have successfully reset password"
+    };
+    let info = await transporter.sendMail(mailOptions);
+
+    callback(info);
+  }
 
   let info = await transporter.sendMail(mailOptions);
 
   callback(info);
 }
 
-srouter.post("/resendemail/:id", (req, res) => {
+srouter.post("/resendemail", (req, res) => {
+  console.log("emailllllllllllllll", req.body);
   user
-    .find({ email: req.body.email })
+    .find({ _id: req.body.ids })
     .exec()
     .then(users => {
       if (users.length < 1) {
@@ -246,11 +262,10 @@ srouter.post("/resendemail/:id", (req, res) => {
           message: "Auth failed user not found"
         });
       } else {
-        console.log("gfghf");
-
-        sendMail(users, info => {
-          console.log();
+       
+        sendMail(users, req.body.email, info => {
           res.send(info);
+          console.log();
         });
       }
     })
@@ -260,30 +275,29 @@ srouter.post("/resendemail/:id", (req, res) => {
       });
     });
 });
-async function sendMail(user, callback) {
-  console.log(user);
-  let transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false,
-    service: "Gmail",
-    auth: {
-      user: "komal22kadam@gmail.com",
-      pass: "gszkzdjlrrmfskpr"
-    }
-  });
+// async function sendMail(user, callback) {
+//   console.log(user);
+//   let transporter = nodemailer.createTransport({
+//     host: "smtp.gmail.com",
+//     port: 587,
+//     secure: false,
+//     service: "Gmail",
+//     auth: {
+//       user: "komal22kadam@gmail.com",
+//       pass: "gszkzdjlrrmfskpr"
+//     }
+//   });
 
-  let mailOptions = {
-    from: "komal22kadam@gmail.com",
-    to: "komal22kadam@gmail.com",
-    subject: "welcome to email",
-    text: "<h1>You successfully reset password</h1>"
-  };
+//   let mailOptions = {
+//     from: "komal22kadam@gmail.com",
+//     to: "komal22kadam@gmail.com",
+//     subject: "welcome to email",
+//     text: "<h1>You successfully reset password</h1>"
+//   };
 
-  let info = await transporter.sendMail(mailOptions);
+//   let info = await transporter.sendMails(mailOptions);
 
-  callback(info);
-}
+//   callback(info);
 
 srouter.put("/reset/:id", (req, res) => {
   console.log("------------", req.params.id);
@@ -326,7 +340,7 @@ srouter.delete("/:userId", checkAuth, (req, res) => {
     .catch(err => {
       console.log(err);
       res.status(500).json({
-        error: err
+        error: errsendMail
       });
     });
 });

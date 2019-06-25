@@ -337,7 +337,7 @@ export class UpdateEmployeeComponent implements OnInit {
        }
        else{
         alert('record is updated');
-        this.routing.navigate(['/', 'employees']);
+           this.routing.navigate(['/', 'employees']);
        }
 
       });

@@ -35,7 +35,10 @@ export class AuthService {
   }
 
   resendemail(id){
-    return this.http.post('http://localhost:3500/resendemail' + `/${id}`);
+    id ={
+      ids: id
+    }
+    return this.http.post('http://localhost:3500/resendemail/',id);
   }
   
   // +`${id}`

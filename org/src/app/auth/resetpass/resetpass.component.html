@@ -3,14 +3,14 @@
 <form [formGroup]="resetForm" (ngSubmit)="onSubmit()">
     <div class="form-row">
         <label for="inputEmail4">Password</label>
-        <input type="password" formControlName="password" class="form-control" placeholder="password" >
+        <input type="password" formControlName="password" class="form-control" placeholder="password" required >
     </div><br>
  
     <div class="form-row">
         <label for="inputEmail4">Confirm Password</label>
-        <input type="password" formControlName="cfpassword" class="form-control" placeholder="confirm password" >
+        <input type="password" formControlName="cfpassword" class="form-control" placeholder="confirm password"  required>
         <div class="red-text" *ngIf="resetForm.controls.cfpassword.invalid">password must be same*</div>
     </div><br>
 
-    <button type="submit" class="btn btn-warning btn-sm" routerLink = "/"  (click)="close()">Send</button>
+    <button type="submit" [disabled]="resetForm.controls['password' && 'cfpassword'].invalid" class="btn btn-warning       btn-sm">Send</button>
 </form>

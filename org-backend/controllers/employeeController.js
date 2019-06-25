@@ -64,7 +64,7 @@ router.post("/send", upload.single("productImage"), (req, res) => {
 });
 
 router.get("/get", (req, res) => {
-  Employee.find((err, docs) => {
+  Employee.find((err, docs) => { 
     if (!err) {
       res.send(docs);
     } else {

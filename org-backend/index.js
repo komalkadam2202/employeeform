@@ -9,9 +9,7 @@ var userController = require("./controllers/userController");
 
 const port = 3500;
 var app = express();
-mongoose.set('debug', true)
-
-
+mongoose.set("debug", true);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

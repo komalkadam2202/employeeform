@@ -38,16 +38,16 @@ console.log("i am innnnnnnnnnnnnnnnnnnn")
 
     this.authservice.resendemail(this.paramid).subscribe((res : any)=>{
 
-         console.log(res)
+         console.log("/**************//***********")
+         console.log("\\\\\\\\\\\\\\\\\\",res)
   
     })     
     
     console.log(res)
 
   })     
+  this.routing.navigate(['/'])
 
 }
-
-
   
 }

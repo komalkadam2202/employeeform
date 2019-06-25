@@ -65,15 +65,10 @@ export class LoginComponent implements OnInit {
         })
             // this.routing.navigate(['/employees'])
 
-            
-
     })
-
+       this.modalRef.hide();
   }
-  close(): void {
   
-    this.modalRef.hide();
-  }
 }
 
 
